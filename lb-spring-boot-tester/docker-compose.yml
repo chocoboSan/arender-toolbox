@@ -14,6 +14,16 @@ services:
       - "RECYCLE_REST_TEMPLATE=true"
     depends_on:
       - "lb-tester-server"
+  lb-tester-client-curl:
+    image: chocobosan/lb-tester-client-curl:${VERSION}
+    build:
+      context: ./lb-curl-tester-client/
+      dockerfile: Dockerfile
+    environment:
+      - "HOST_NAME=http://lb-tester-server:20000/"
+      - "NUMBER_REQUESTS=200"
+    depends_on:
+      - "lb-tester-server"
 
   lb-tester-server:
     image: chocobosan/lb-tester-server:${VERSION}
