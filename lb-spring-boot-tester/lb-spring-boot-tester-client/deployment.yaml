@@ -4,6 +4,7 @@ metadata:
   labels:
     app: arender-pool-1
   namespace: int-arender-dev
+  name: arender-pool-1-lb-tester-client
 spec:
   replicas: 1
   revisionHistoryLimit: 10
