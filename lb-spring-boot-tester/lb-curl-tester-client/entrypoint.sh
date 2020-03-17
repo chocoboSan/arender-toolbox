@@ -1,5 +1,6 @@
 #! /bin/sh
 
+sleep 5
 REQ=0
 while [ $REQ -lt $NUMBER_REQUESTS ]
 do
