@@ -31,7 +31,7 @@ spec:
       containers:
         - env:
             - name: HOST_NAME
-              value: "http://lb-tester-server-service:20000"
+              value: "http://arender-pool-1-lb-tester-server:20000"
             - name: NUMBER_REQUESTS
               value: '2000'
             - name: USE_LB_HEADERS
@@ -44,6 +44,7 @@ spec:
           image: >-
             chocobosan/lb-tester-client:1.0.0
           imagePullPolicy: IfNotPresent
+          name: lb-tester-client
           resources:
             limits:
               cpu: '1'

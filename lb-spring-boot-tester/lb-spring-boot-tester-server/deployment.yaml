@@ -40,6 +40,7 @@ spec:
           image: >-
             chocobosan/lb-tester-server:1.0.0
           imagePullPolicy: IfNotPresent
+          name: lb-tester-server
           readinessProbe:
             failureThreshold: 4
             httpGet:

@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: arender-pool-1
+  namespace: int-arender-dev
+  name: arender-pool-1-lb-tester-server
+spec:
+  clusterIP: None
+  ports:
+    - name: http
+      port: 20000
+      protocol: TCP
+      targetPort: 20000
+  selector:
+    app: arender-pool-1
+    role: lb-tester-server
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
