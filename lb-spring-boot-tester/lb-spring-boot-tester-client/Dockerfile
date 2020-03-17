@@ -8,4 +8,4 @@ USER ${USER}
 
 COPY ./target/*.jar /arender/app.jar
 WORKDIR /arender/
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-Dsun.net.inetaddr.ttl=0", "-jar", "app.jar"]
