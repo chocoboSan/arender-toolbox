@@ -46,7 +46,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.name
           image: >-
-            chocobosan/lb-tester-client:1.0.2
+            chocobosan/lb-tester-client:1.0.3
           imagePullPolicy: IfNotPresent
           name: lb-tester-client
           resources:

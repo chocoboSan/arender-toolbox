@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>lb-spring-boot-tester-pom</artifactId>
     <groupId>net.unicornbox</groupId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
 	<name>ARender load balancers spring boot testers</name>
 	<packaging>pom</packaging>
 

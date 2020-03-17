@@ -1,4 +1,4 @@
-FROM adoptopenjdk:8-hotspot
+FROM adoptopenjdk/openjdk8:alpine-slim
 
 ARG USER=arender
 ARG GROUP=arondor
