@@ -40,13 +40,15 @@ spec:
               value: 'true'
             - name: USE_EXCHANGE
               value: 'true'
+            - name: SUN_NET_INETADDR_TTL
+              value: '0'
             - name: POD_NAME
               valueFrom:
                 fieldRef:
                   apiVersion: v1
                   fieldPath: metadata.name
           image: >-
-            chocobosan/lb-tester-client:1.0.4
+            chocobosan/lb-tester-client:1.0.5
           imagePullPolicy: Always
           name: lb-tester-client
           resources:

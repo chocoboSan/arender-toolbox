@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>net.unicornbox</groupId>
 	<artifactId>lb-spring-boot-tester-client</artifactId>
-	<version>1.0.4</version>
+	<version>1.0.5</version>
 	<name>lb-spring-boot-tester-client</name>
 	<description>Client spring boot tester side</description>
 
