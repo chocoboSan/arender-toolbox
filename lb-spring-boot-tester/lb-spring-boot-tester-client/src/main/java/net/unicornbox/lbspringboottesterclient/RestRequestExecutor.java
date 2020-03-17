@@ -37,6 +37,9 @@ class RestRequestExecutor implements CommandLineRunner {
     @Value("${use.exchange}")
     private boolean useExchange = true;
 
+    @Value("${disable.dns.caching}")
+    private boolean disableDnsCaching = false;
+
     @Autowired
     private ConfigurableApplicationContext applicationContext;
 
@@ -59,6 +62,12 @@ class RestRequestExecutor implements CommandLineRunner {
             LOGGER.info("Requests will recycle the restTemplates");
         } else {
             LOGGER.info("Requests will not recycle the restTemplates");
+        }
+        if (disableDnsCaching) {
+            LOGGER.info("networkaddress.cache.ttl will be set to 0");
+            java.security.Security.setProperty("networkaddress.cache.ttl", "0");
+        } else {
+            LOGGER.info("networkaddress.cache.ttl will not be changed, default value :" + java.security.Security.getProperty("networkaddress.cache.ttl"));
         }
         ResponseEntity<String> podName;
 
