@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  lb-tester-client:
+    image: chocobosan/lb-tester-client:${VERSION}
+    build:
+      context: ./lb-spring-boot-tester-client/
+      dockerfile: Dockerfile
+    environment:
+      - "HOST_NAME=http://lb-tester-server:20000/"
+      - "NUMBER.REQUESTS=200"
+      - "USE_LB_HEADERS=true"
+    depends_on:
+      - "lb-tester-server"
+
+  lb-tester-server:
+    image: chocobosan/lb-tester-server:${VERSION}
+    build:
+      context: ./lb-spring-boot-tester-server/
+      dockerfile: Dockerfile
+    environment:
+      - "SERVER_PORT=20000"
+      - "POD_NAME=MySuperPodName"
+    ports:
+      - 20000:20000
