@@ -1,0 +1,70 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: arender-pool-1
+  namespace: int-arender-dev
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    app: arender-pool-1
+    role: lb-tester-server
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: arender-pool-1
+        role: lb-tester-server
+    spec:
+      containers:
+        - env:
+            - name: SERVER_PORT
+              value: '20000'
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: metadata.name
+          image: >-
+            chocobosan/lb-tester-server:1.0.0
+          imagePullPolicy: IfNotPresent
+          readinessProbe:
+            failureThreshold: 4
+            httpGet:
+              path: /
+              port: 20000
+              scheme: HTTP
+            initialDelaySeconds: 10
+            periodSeconds: 15
+            successThreshold: 1
+            timeoutSeconds: 10
+          resources:
+            limits:
+              cpu: '1'
+              memory: 1Gi
+            requests:
+              cpu: '1'
+              memory: 1Gi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      serviceAccount: arender-pool-1-service-account
+      serviceAccountName: arender-pool-1-service-account
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+    - type: ConfigChange
