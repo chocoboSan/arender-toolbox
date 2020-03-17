@@ -47,6 +47,18 @@ class RestRequestExecutor implements CommandLineRunner {
         LOGGER.info("Going to execute requests on " + url + "...");
         if (useLbHeaders) {
             LOGGER.info("Requests will have a specific LB cookie placed");
+        } else {
+            LOGGER.info("Requests will not have a specific LB cookie placed");
+        }
+        if (useExchange) {
+            LOGGER.info("Requests will use headers and exchange method");
+        } else {
+            LOGGER.info("Requests will use getForEntity method");
+        }
+        if (recycleRestTemplate) {
+            LOGGER.info("Requests will recycle the restTemplates");
+        } else {
+            LOGGER.info("Requests will not recycle the restTemplates");
         }
         ResponseEntity<String> podName;
 
