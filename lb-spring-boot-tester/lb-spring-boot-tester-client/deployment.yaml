@@ -40,15 +40,13 @@ spec:
               value: 'true'
             - name: USE_EXCHANGE
               value: 'true'
-            - name: DISABLE_DNS_CACHING
-              value: 'true'
             - name: POD_NAME
               valueFrom:
                 fieldRef:
                   apiVersion: v1
                   fieldPath: metadata.name
           image: >-
-            chocobosan/lb-tester-client:1.0.3
+            chocobosan/lb-tester-client:1.0.4
           imagePullPolicy: Always
           name: lb-tester-client
           resources:
@@ -60,6 +58,7 @@ spec:
               memory: 1Gi
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}

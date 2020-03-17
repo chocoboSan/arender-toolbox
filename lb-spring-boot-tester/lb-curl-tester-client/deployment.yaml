@@ -40,7 +40,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.name
           image: >-
-            chocobosan/lb-tester-client-curl:1.0.2
+            chocobosan/lb-tester-client-curl:1.0.4
           imagePullPolicy: Always
           name: lb-tester-client
           resources:
