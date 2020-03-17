@@ -39,6 +39,9 @@ class RestRequestExecutor implements CommandLineRunner {
         RestTemplate template = new RestTemplate();
         URI url = UriComponentsBuilder.fromHttpUrl(hostName).build().toUri();
         LOGGER.info("Going to execute requests on " + url + "...");
+        if (useLbHeaders) {
+            LOGGER.info("Requests will have a specific LB cookie placed");
+        }
         ResponseEntity<String> podName;
 
         HttpHeaders headers = new HttpHeaders();
