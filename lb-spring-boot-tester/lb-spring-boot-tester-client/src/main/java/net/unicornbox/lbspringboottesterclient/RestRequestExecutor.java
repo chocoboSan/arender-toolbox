@@ -31,6 +31,12 @@ class RestRequestExecutor implements CommandLineRunner {
     @Value("${number.requests}")
     private int numberRequests = 100;
 
+    @Value("${recycle.rest.template}")
+    private boolean recycleRestTemplate = false;
+
+    @Value("${use.exchange}")
+    private boolean useExchange = true;
+
     @Autowired
     private ConfigurableApplicationContext applicationContext;
 
@@ -51,7 +57,17 @@ class RestRequestExecutor implements CommandLineRunner {
         }
         for (int i = 0; i < numberRequests; i++) {
             HttpEntity<?> newEntity = new HttpEntity<Object>(null, headers);
-            podName = template.exchange(url, HttpMethod.GET, newEntity, String.class);
+            RestTemplate currentTemplate;
+            if (recycleRestTemplate) {
+                currentTemplate = template;
+            } else {
+                currentTemplate = new RestTemplate();
+            }
+            if (useExchange) {
+                podName = currentTemplate.exchange(url, HttpMethod.GET, newEntity, String.class);
+            } else {
+                podName = currentTemplate.getForEntity(url, String.class);
+            }
             if (podName.getStatusCode() == HttpStatus.OK) {
                 LOGGER.info("Pod Name : " + podName.getBody());
             }

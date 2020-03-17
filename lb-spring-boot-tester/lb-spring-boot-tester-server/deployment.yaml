@@ -38,7 +38,7 @@ spec:
                   apiVersion: v1
                   fieldPath: metadata.name
           image: >-
-            chocobosan/lb-tester-server:1.0.0
+            chocobosan/lb-tester-server:1.0.2
           imagePullPolicy: IfNotPresent
           name: lb-tester-server
           readinessProbe:

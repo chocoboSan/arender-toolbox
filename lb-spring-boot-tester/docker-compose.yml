@@ -10,6 +10,8 @@ services:
       - "HOST_NAME=http://lb-tester-server:20000/"
       - "NUMBER_REQUESTS=200"
       - "USE_LB_HEADERS=true"
+      - "USE_EXCHANGE=true"
+      - "RECYCLE_REST_TEMPLATE=true"
     depends_on:
       - "lb-tester-server"
 
